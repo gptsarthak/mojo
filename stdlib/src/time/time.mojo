@@ -268,3 +268,9 @@ fn sleep(sec: Int):
         external_call["Sleep", NoneType](sec * 1000)
     else:
         external_call["sleep", NoneType](sec)
+
+fn time() -> Float64:
+    if os_is_linux():
+        return _gettime_as_nsec_unix(_CLOCK_REALTIME) / 1000000000
+    else:
+        return 0
